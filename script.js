@@ -14,6 +14,8 @@ if (!score) {
 }
 */
 
+updateScoreElement();
+
 function playGame(playerMove) {
     const computerMove =  pickComputerMove();
 
@@ -57,10 +59,20 @@ function playGame(playerMove) {
       }
       
       localStorage.setItem('score', JSON.stringify(score));
+      
+      updateScoreElement ();
 
-    alert(`You picked ${playerMove}. Computer picked ${computerMove}.  ${result}.
-Wins: ${score.wins}, Losses ${score.losses}, Ties: ${score.ties} ` );
+      document.querySelector('.js-result')
+        .innerHTML = result;
 
+      document.querySelector('.js-moves') 
+        .innerHTML = `You picked ${playerMove} - Computer picked ${computerMove} `;
+
+  }
+
+  function updateScoreElement() {
+    document.querySelector ('.js-score')
+        .innerHTML = `Wins: ${score.wins}, Losses ${score.losses}, Ties: ${score.ties}`;
   }
 
   function pickComputerMove() {
